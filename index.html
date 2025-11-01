@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Shop</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    background: #f5f5f5;
+  }
+  h1, h2, h3 {
+    margin: 0;
+  }
+  section {
+    padding: 100px 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+    border-radius: 15px;
+  }
+  section.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  header {
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+  }
+  header h1 {
+    font-size: 52px;
+    margin-bottom: 10px;
+  }
+  header p {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+  button {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+  button:hover {
+    transform: scale(1.05);
+    background: #ff5252;
+  }
+  #services {
+    background: linear-gradient(135deg,#f6d365,#fda085);
+  }
+  #pricing {
+    background: linear-gradient(135deg,#a1c4fd,#c2e9fb);
+  }
+  #portfolio {
+    background: linear-gradient(135deg,#84fab0,#8fd3f4);
+  }
+  #testimonials {
+    background: linear-gradient(135deg,#fccb90,#d57eeb);
+  }
+  #contact {
+    background: linear-gradient(135deg,#fbc2eb,#a6c1ee);
+  }
+  .services, .pricing, .portfolio, .testimonials, .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .service, .price-card, .portfolio a, .testimonial, .contact-info {
+    background: rgba(255,255,255,0.9);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    flex: 1 1 250px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .service:hover, .price-card:hover, .testimonial:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  }
+  .service h3 {
+    margin: 15px 0 10px;
+    font-size: 22px;
+    color: #333;
+  }
+  .service p {
+    font-size: 16px;
+    color: #555;
+  }
+  .portfolio a {
+    display: inline-block;
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .portfolio a img {
+    width: 100%;
+    display: block;
+  }
+  .portfolio a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  }
+  .floating-menu {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+  }
+  .floating-menu a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: #4e54c8;
+    color: white;
+    border-radius: 50%;
+    font-size: 24px;
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+    text-align: center;
+    text-decoration: none;
+  }
+  .floating-menu a:hover {
+    transform: scale(1.2);
+    background: #3b3fc1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  #backToTop {
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #ff6b6b;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 20px;
+    display: none;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  #backToTop:hover {
+    transform: scale(1.1);
+    background: #ff5252;
+  }
+  footer {
+    text-align: center;
+    padding: 30px;
+    background: #333;
+    color: white;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  input, textarea {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  input[type="submit"] {
+    background: #4e54c8;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  input[type="submit"]:hover {
+    background: #3b3fc1;
+  }
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <h1>My Shop</h1>
+  <p>Sites professionnels pour vous aider à vendre et à grandir</p>
+  <button>Commencez maintenant</button>
+</header>
+
+<section id="services" class="fade-in">
+  <h2>Nos Services</h2>
+  <div class="services">
+    <div class="service">
+      <i class="fas fa-laptop-code fa-3x" style="color:#4e54c8;"></i>
+      <h3>Conception de sites web</h3>
+      <p>Création de sites modernes, rapides et responsives.</p>
+    </div>
+    <div class="service">
+      <i class="fas fa-bullhorn fa-3x" style="color:#ff6b6b;"></i>
+      <h3>Marketing digital</h3>
+      <p>Stratégies SEO et publicité pour augmenter votre visibilité.</p>
+    </div>
+    <div class="service">
+      <i class="fas fa-edit fa-3x" style="color:#f6d365;"></i>
+      <h3>Gestion de contenu</h3>
+      <p>Rédaction et mise à jour de contenu pour vos clients.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="fade-in">
+  <h2>Tarifs et Forfaits</h2>
+  <div class="pricing">
+    <div class="price-card">Forfait de base<br>50€/mois</div>
+    <div class="price-card">Forfait avancé<br>100€/mois</div>
+    <div class="price-card">Forfait professionnel<br>200€/mois</div>
+  </div>
+</section>
+
+<section id="portfolio" class="fade-in">
+  <h2>Galerie</h2>
+  <div class="portfolio">
+    <a href="#"><img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Projet Web 1"></a>
+    <a href="#"><img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Projet Web 2"></a>
+  </div>
+</section>
+
+<section id="testimonials" class="fade-in">
+  <h2>Avis des Clients</h2>
+  <div class="testimonials">
+    <div class="testimonial">"Service excellent!" - Ahmed</div>
+    <div class="testimonial">"Design professionnel." - Sarah</div>
+  </div>
+</section>
+
+<section id="contact" class="fade-in">
+  <h2>Contactez-nous</h2>
+  <form action="https://formspree.io/f/mnnooqgb" method="POST">
+    <input type="text" name="name" placeholder="Votre nom" required />
+    <input type="email" name="email" placeholder="Votre email" required />
+    <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+    <input type="submit" value="Envoyer" />
+  </form>
+  <div class="contact" style="margin-top:20px;">
+    <div class="contact-info">📞 +216 11 111 111</div>
+    <div class="contact-info">✉️ name@exmpla.com</div>
+  </div>
+</section>
+
+<div class="floating-menu">
+  <a href="#hero" title="Accueil"><i class="fas fa-home"></i></a>
+  <a href="#services" title="Services"><i class="fas fa-briefcase"></i></a>
+  <a href="#pricing" title="Tarifs"><i class="fas fa-money-bill"></i></a>
+  <a href="#portfolio" title="Galerie"><i class="fas fa-images"></i></a>
+  <a href="#testimonials" title="Avis"><i class="fas fa-star"></i></a>
+  <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
+</div>
+
+<div id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+<footer>
+  Tous droits réservés © 2025 My Shop
+</footer>
+
+<script>
+  const faders = document.querySelectorAll('.fade-in');
+  const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+  faders.forEach(fader => appearOnScroll.observe(fader));
+
+  const sections = document.querySelectorAll('section,header');
+  const menuLinks = document.querySelectorAll('.floating-menu a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 60;
+      if (pageYOffset >= sectionTop) current = section.getAttribute('id');
+    });
+    menuLinks.forEach(link => {
+      link.style.background = '#4e54c8';
+      if (link.getAttribute('href') == `#${current}`) link.style.background = '#ff6b6b';
+    });
+
+    const backToTop = document.getElementById('backToTop');
+    if (window.scrollY > 500) backToTop.style.display = 'block';
+    else backToTop.style.display = 'none';
+  });
+
+  document.getElementById('backToTop').addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  window.addEventListener('load', () => {
+    let delay = 0;
+    sections.forEach(section => {
+      setTimeout(() => section.classList.add('show'), delay);
+      delay += 200;
+    });
+  });
+</script>
+
+</body>
+</html>
+
